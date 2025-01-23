@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraFollowController : MonoBehaviour
 {
-   [SerializeField] private Transform defaultPosition; // موقعیت اولیه دوربین
+[SerializeField] private Transform defaultPosition; // موقعیت اولیه دوربین
 [SerializeField] private Vector3 offset = new Vector3(0, 5, -10); // فاصله دوربین از توپ
 [SerializeField] private float followSpeed = 5f; // سرعت دنبال کردن توپ
 [SerializeField] private float resetSpeed = 3f; // سرعت بازگشت دوربین به موقعیت اولیه

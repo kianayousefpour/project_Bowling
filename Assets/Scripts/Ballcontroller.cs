@@ -91,16 +91,6 @@ public class BallController : MonoBehaviour
         }
     }
 
-    // private void OnCollisionEnter(Collision other)
-    // {
-    //     if (other.gameObject.CompareTag("Pin"))
-    //     {
-    //         // بازگشت دوربین به حالت اولیه
-    //         CameraFollowController.ResetCamera();
-            
-    //     }
-    // }
-
     private void GetComponentValues()
     {
         BallRigidbody = GetComponent<Rigidbody>();

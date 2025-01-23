@@ -3,7 +3,7 @@ using UnityEngine;
 public class PinSpawnController : MonoBehaviour
 {
     [SerializeField] private GameObject PinPrefab; // Prefab پین
-    private Vector3 startPosition = new Vector3(88, -10, 28); // موقعیت اولیه برای اولین پین
+    [SerializeField] private Vector3 startPosition = new Vector3(88, -10, 28); // موقعیت اولیه برای اولین پین
     [SerializeField] private float rowSpacing = 2f; // فاصله بین ردیف‌ها
     [SerializeField] private float columnSpacing = 2f; // فاصله بین ستون‌ها
     [SerializeField] private int rows = 2; // تعداد ردیف‌ها
@@ -14,7 +14,7 @@ public class PinSpawnController : MonoBehaviour
         GeneratePinGrid();
     }
 
-    private void GeneratePinGrid()
+    public void GeneratePinGrid()
     {
         // حلقه برای ایجاد ردیف‌ها و ستون‌ها
         for (int row = 0; row < rows; row++)

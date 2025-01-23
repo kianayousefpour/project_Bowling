@@ -7,7 +7,12 @@ public class BowlingGameManager : MonoBehaviour
     [SerializeField] private float ballDestroyDelay = 10f; // زمان حذف توپ بدون برخورد
     private Rigidbody BallRigidbody;
     private BallManager BallManager;
-    [SerializeField] private AudioSource cllapSound;
+    // [SerializeField] private AudioSource cllapSound;
+    [SerializeField] private int totalPins=10; // تعداد کل پین‌ها
+    
+    private int currentStage = 0; // مرحله فعلی
+    [SerializeField] private int maxStages = 5; // تعداد کل مراحل   
+    [SerializeField] private GameObject gameOverButton; // دکمه گیم‌اور
 
     private bool ballThrown = false; // آیا توپ پرتاب شده است؟
     private bool pinHit = false; // آیا برخورد با بولینگ رخ داده است؟
@@ -15,12 +20,15 @@ public class BowlingGameManager : MonoBehaviour
 
     private void Start()
     {
-        GetComponentValues();
+       
+    GetComponentValues();
+    gameOverButton.SetActive(false);
     }
 
     private void Update()
     {
         CheckBallTimeout();
+        //CheckAllPinsFallen();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -28,25 +36,12 @@ public class BowlingGameManager : MonoBehaviour
         if (other.gameObject.CompareTag("Pin"))
         {
             pinHit = true;
-            cllapSound.Play();
+            // cllapSound.Play();
 
             // حذف بولینگ‌های افتاده و توپ پس از تاخیر
             Invoke(nameof(RemovePinsAndBall), pinDestroyDelay);
-           // BallManager.SetActiveBall();
-           // BallRigidbody.isKinematic = true;
-            //transform.SetParent(other.gameObject.transform);
         }
     }
-
-    // private void OnCollisionExit(Collision other)
-    // {
-    //     if (other.gameObject.CompareTag("Pin"))
-    //     {
-    //         BallManager.SetActiveBall();
-    //         BallRigidbody.isKinematic = true;
-    //         transform.SetParent(other.gameObject.transform);
-    //     }
-    // }
 
     public void ThrowBall()
     {
@@ -91,4 +86,53 @@ public class BowlingGameManager : MonoBehaviour
         BallRigidbody = GetComponent<Rigidbody>();
         BallManager = GameObject.FindObjectOfType<BallManager>();
     }
+
+// private void CheckAllPinsFallen()
+// {
+//     // بررسی اینکه آیا همه پین‌ها افتاده‌اند
+//     GameObject[] pins = GameObject.FindGameObjectsWithTag("Pin");
+//     int fallenPins = 0;
+
+//     foreach (GameObject pin in pins)
+//     {
+//         if (pin.transform.position.y < -12f) // معیار افتادن پین
+//         {
+//             fallenPins++;
+//         }
+//     }
+
+//     if (fallenPins == totalPins) // اگر همه پین‌ها افتاده‌اند
+//     {
+//         //GoToNextStage();
+//     }
+// }
+
+// private void GoToNextStage()
+// {
+//     currentStage++;
+//     if (currentStage > maxStages) // اگر تمام مراحل تمام شده باشد
+//     {
+//         Debug.Log("Game Completed!");
+//         gameOverButton.SetActive(true); // نمایش دکمه گیم‌اور
+//     }
+//     else
+//     {
+//         ResetPinsAndBalls(); // بازنشانی پین‌ها و توپ‌ها
+//     }
+// }
+
+// private void ResetPinsAndBalls()
+// {
+//     // بازنشانی تمام پین‌ها
+//     FindObjectOfType<PinSpawnController>().GeneratePinGrid();
+
+//     // بازنشانی توپ‌ها
+//     FindObjectOfType<BallManager>().ResetBalls();
+// }
+
+// public void GameOver()
+// {
+//     Debug.Log("Game Over!");
+//     gameOverButton.SetActive(true); // نمایش دکمه گیم‌اور
+// }
 }
