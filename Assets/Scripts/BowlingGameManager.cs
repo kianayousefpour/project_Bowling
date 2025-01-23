@@ -12,7 +12,7 @@ public class BowlingGameManager : MonoBehaviour
     
     private int currentStage = 0; // مرحله فعلی
     [SerializeField] private int maxStages = 5; // تعداد کل مراحل   
-    [SerializeField] private GameObject gameOverButton; // دکمه گیم‌اور
+    //[SerializeField] private GameObject gameOverButton; // دکمه گیم‌اور
 
     private bool ballThrown = false; // آیا توپ پرتاب شده است؟
     private bool pinHit = false; // آیا برخورد با بولینگ رخ داده است؟
@@ -22,7 +22,7 @@ public class BowlingGameManager : MonoBehaviour
     {
        
     GetComponentValues();
-    gameOverButton.SetActive(false);
+    //gameOverButton.SetActive(false);
     }
 
     private void Update()
